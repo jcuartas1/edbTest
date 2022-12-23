@@ -1,0 +1,32 @@
+### Create new Report
+POST http://localhost:3000/reports
+Content-Type: application/json
+
+{
+  "title" : "New Report for Test",
+  "description": "Esse dolore dolor non magna magna pariatur pariatur commodo sint incididunt consectetur.",
+  "price": 200,
+  "content": "Ut sit proident sit commodo."
+}
+
+
+### Get All Reports
+GET http://localhost:3000/reports
+
+
+### Update Report
+PATCH http://localhost:3000/reports/2
+Content-Type: application/json
+
+{
+  "title": "Update Report",
+  "content": "Est ut sunt quis id cillum nostrud deserunt cupidatat dolor.",
+  "price": 250
+}
+
+
+### Find One Report By Id
+GET http://localhost:3000/reports/1
+
+### Remove Report
+DELETE http://localhost:3000/reports/2

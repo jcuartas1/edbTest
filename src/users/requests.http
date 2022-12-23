@@ -1,0 +1,25 @@
+### Create new User
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+  "email" : "test@test.com",
+  "password": "dwdsksdk"
+}
+
+### find a particular user with a given ID
+GET http://localhost:3000/auth/2
+
+### Find all users with a given emai
+GET http://localhost:3000/auth?email=test@test.com
+
+### Delete users with a given ID
+DELETE http://localhost:3000/auth/1
+
+### Update a user
+PATCH  http://localhost:3000/auth/2
+Content-Type: application/json
+
+{
+  "email": "aaa@gmail.com"
+}
