@@ -3,10 +3,10 @@ POST http://localhost:3001/reports
 Content-Type: application/json
 
 {
-  "title" : "New Report For more test",
-  "description": "Esse dolore dolor non magna magna pariatur pariatur commodo sint incididunt consectetur.",
-  "price": 550,
-  "content": "Ut sit proident sit commodo."
+  "title" : "New Report Home",
+  "description": "Consectetur exercitation eiusmod id laboris voluptate voluptate tempor exercitation nisi et.",
+  "price": 230,
+  "content": "Pariatur qui aliqua deserunt aliqua anim."
 }
 
 
