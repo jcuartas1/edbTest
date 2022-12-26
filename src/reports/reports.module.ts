@@ -1,11 +1,18 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { ReportsController } from './reports.controller';
 import { ReportsService } from './reports.service';
-import {Report} from './report.entity';
+import { MongoReport, ReportSchema } from './report.mongo.entity';
+import { ConfigModule } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Report])],
+  imports: [
+    ConfigModule,
+    MongooseModule.forFeature([{
+      name: MongoReport.name,
+      schema: ReportSchema
+    }])
+  ],
   controllers: [ReportsController],
   providers: [ReportsService]
 })

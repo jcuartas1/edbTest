@@ -1,49 +1,37 @@
-import {Entity, Column, PrimaryGeneratedColumn, ObjectIdColumn} from 'typeorm';
-import { ObjectId } from 'mongodb';
-
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { ApiProperty } from '@nestjs/swagger';
+import { Document } from "mongoose";
 
-@Entity()
-export class Report {
-
-    // @ApiProperty({
-    //     example: '1',
-    //     description: 'Id Report',
-    //     uniqueItems: true
-    //   })
-    // @PrimaryGeneratedColumn() 
-    // id: number;
-    
-    @ObjectIdColumn()
-    _id: ObjectId;
-
+@Schema()
+export class MongoReport extends Document{
+  
     @ApiProperty({
         example: '200',
         description: 'Report Price'
       })
-    @Column()
+    @Prop()
     price: number;
     
     @ApiProperty({
         example: 'New Report Test',
         description: 'Report Title'
       })
-    @Column()
+    @Prop()
     title: string;
     
     @ApiProperty({
         example: 'Laboris enim et ea nulla anim nisi Lorem.',
         description: 'Report Description'
       })
-    @Column()
+    @Prop()
     description: string;
     
     @ApiProperty({
         example: 'In do consequat nulla aliqua excepteur deserunt amet sint ea magna eu in eu.',
         description: 'Report Content'
       })
-    @Column()
+    @Prop()
     content: string;
-
-    
 }
+
+export const ReportSchema = SchemaFactory.createForClass( MongoReport );

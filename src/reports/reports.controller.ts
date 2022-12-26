@@ -4,6 +4,7 @@ import { CreateReportDto } from './dtos/create-report.dto';
 import { UpdateReportDto } from './dtos/upadate-report.dto';
 import { Report } from './report.entity';
 import { ReportsService } from './reports.service';
+import { MongoReport } from './report.mongo.entity';
 
 
 @ApiTags('REPORT')
@@ -17,7 +18,7 @@ export class ReportsController {
   @ApiResponse({
     status: 201,
     description: 'was created succefully',
-    type: Report,
+    type: MongoReport,
   })
   @ApiResponse({status: 400, description: 'Bad Request'})
   @ApiResponse({status: 500, description: 'Internal Server Error'})
@@ -29,7 +30,7 @@ export class ReportsController {
   @ApiResponse({
     status: 200,
     description: 'was searched succefully',
-    type: Report
+    type: MongoReport
   })
   @ApiResponse({status: 400, description: 'Bad Request'})
   @ApiResponse({status: 403, description: 'Report Not Found'})
@@ -38,24 +39,24 @@ export class ReportsController {
     return await this.reportsService.find();
   }
 
-  @Get('/:id')
+  @Get('/:idsearch')
   @ApiResponse({
     status: 200,
     description: 'was searched succefully',
-    type: Report,
+    type: MongoReport,
   })
   @ApiResponse({status: 400, description: 'Bad Request'})
   @ApiResponse({status: 403, description: 'Report Not Found'})
   @ApiResponse({status: 500, description: 'Internal Server Error'})
-  async findOne(@Param('id') id:string){
-    const report =  await this.reportsService.findOne(parseInt(id));
+  async findOne(@Param('idsearch') id:string){
+    const report =  await this.reportsService.findOne(id);
     if(!report) {
       throw new NotFoundException('report not found')
     }
     return report
   }
 
-  @Patch('/:id')
+  @Patch('/:idsearch')
   @ApiResponse({
     status: 200,
     description: 'was updated succefully'
@@ -63,11 +64,11 @@ export class ReportsController {
   @ApiResponse({status: 400, description: 'Bad Request'})
   @ApiResponse({status: 403, description: 'Report Not Found'})
   @ApiResponse({status: 500, description: 'Internal Server Error'})
-  async updateReport(@Param('id') id:string, @Body() body: UpdateReportDto){
-    return await this.reportsService.update(parseInt(id), body);
+  async updateReport(@Param('idsearch') id:string, @Body() body: UpdateReportDto){
+    return await this.reportsService.update(id, body);
   }
 
-  @Delete('/:id')
+  @Delete('/:idsearch')
   @ApiResponse({
     status: 200,
     description: 'was delated succefully'
@@ -75,8 +76,8 @@ export class ReportsController {
   @ApiResponse({status: 400, description: 'Bad Request'})
   @ApiResponse({status: 403, description: 'Report Not Found'})
   @ApiResponse({status: 500, description: 'Internal Server Error'})
-  async removeReport(@Param('id') id:string){
-    return this.reportsService.remove(parseInt(id))
+  async removeReport(@Param('idsearch') id:string){
+    return this.reportsService.remove(id)
   }
 
 }
