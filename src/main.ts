@@ -5,6 +5,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ReportsModule } from './reports/reports.module';
 import { get } from 'http';
 import { resolve } from 'path';
+import cors from 'cors';
 import { createWriteStream, writeFileSync } from 'fs';
 
 
@@ -15,6 +16,12 @@ async function bootstrap() {
       whitelist: true
     })
   )
+
+  app.use(cors({
+    origin: '*',
+    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
+    optionsSuccessStatus: 200
+  }));
 
   const config = new DocumentBuilder()
     .setTitle('Edb Group')
