@@ -20,6 +20,7 @@ async function bootstrap() {
   app.use(cors({
     origin: '*',
     methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
+    preflightContinue: false,
     optionsSuccessStatus: 200
   }));
 
